@@ -1,0 +1,27 @@
+.body{
+    background-image: url("images/backgrounimage.jpg");
+    background-color: #ddd;
+    width: 100%;
+    height: 60vh;
+    background-size: cover;
+}
+
+.inputBorad{
+    padding:20px;
+    background-color: #aaaaaa;
+    width: 100%;;
+
+}
+.cards{
+    margin-top: 40px;
+}
+
+.banner{
+    margin-top: 5vh;
+    background-image: url("images/img.svg");
+    background-size: cover;
+    background-position: fixed;
+    width:100%;
+    height: 60vh;
+    margin-bottom: 5vh;
+}
