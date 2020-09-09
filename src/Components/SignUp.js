@@ -12,8 +12,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Axios from 'axios';
 
 function Copyright() {
+
+  
+
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -48,6 +52,40 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+
+  const onSubmit = ()=>{
+    const fname=document.getElementById("firstName").value
+    const lname=document.getElementById("lastName").value
+    const email=document.getElementById("email").value
+    const phone=document.getElementById("phone").value
+    const password=document.getElementById("password").value
+    const cpassword=document.getElementById("confirmpassword").value
+    
+    if(password===cpassword){
+        
+      let data={
+        "firstName":fname,
+        "lastName":lname,
+        "email":email,
+        "phoneNumber":phone,
+        "password":password,
+        "accountType":"USER",   
+        }
+
+        
+        const backurl=process.env.REACT_APP_BACKEND_URL+"profile/signup"
+        
+
+       
+       Axios.post(backurl,data).then( res =>{
+          console.log(res.data)
+       })
+
+    }
+
+  }
+
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -85,6 +123,10 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
+
+              <Grid container spacing={2}>
+
+                <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -94,6 +136,21 @@ export default function SignUp() {
                 name="email"
                 autoComplete="email"
               />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="phone"
+                label="Phone Number"
+                name="phone"
+                autoComplete="phone"
+              />
+              </Grid>
+
+</Grid>
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -115,7 +172,7 @@ export default function SignUp() {
                 name="confirmpassword"
                 label="Confirm Password"
                 type="password"
-                id="password"
+                id="confirmpassword"
                 autoComplete="current-password"
               />
             </Grid>
@@ -128,7 +185,8 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
+            onClick={onSubmit}
+            
             fullWidth
             variant="contained"
             color="primary"

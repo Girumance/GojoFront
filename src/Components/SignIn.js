@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,8 +12,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useDispatch} from "react-redux"
+import {Login, Adduserdata} from "./../Actions"
+import Axios from "axios"
 
 function Copyright() {
+
+
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -46,8 +51,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
+  const dispatch =useDispatch();
+  const [Close] = useState(props)
+
+  const signin = () => {
+
+    const email = document.getElementById("email").value;
+    const password=document.getElementById("password").value;
+
+    const data = {
+
+      username:email,
+      password:password
+    }
+    const backurl=process.env.REACT_APP_BACKEND_URL+"login"
+    Axios.post(backurl,data).then( res => {
+      dispatch(Login())
+      dispatch(Adduserdata(res.data))
+      Close.onClose();
+      
+    })
+
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -87,11 +114,12 @@ export default function SignIn() {
             label="Remember me"
           />
           <Button
-            type="submit"
+            
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={()=> signin()}
           >
             Sign In
           </Button>

@@ -122,7 +122,7 @@ export default class Body extends React.Component{
 
 
             <Grid container xs={6} >
-              <Paper className="inputBorad">
+              <Paper className="inputBorad" elevation={5}>
 
             
                 <Grid xs={12}>

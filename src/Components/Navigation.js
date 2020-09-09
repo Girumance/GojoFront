@@ -5,12 +5,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CustomDialog from "./Dialog/CustomDialog"
 import SignUp from "./SignUp"
 import SignIn from "./SignIn";
+import {connect} from "react-redux"
 
-
-
-
-
-export default class Navigation extends React.Component{
+ class Navigation extends React.Component{
 
     constructor(){
         super();
@@ -38,6 +35,8 @@ export default class Navigation extends React.Component{
       };
       
        handleSignUpClose = () => {
+
+        
         this.setState({
                 
             signupopen:false
@@ -48,7 +47,7 @@ export default class Navigation extends React.Component{
 
       handleSignInClickOpen = () => {
 
-    
+        
         this.setState({
             
             signinopen:true
@@ -68,6 +67,7 @@ export default class Navigation extends React.Component{
 
 render(){
 
+    console.log(this.props.login)
 
     return(
 
@@ -75,15 +75,24 @@ render(){
         <Toolbar >
         <IconButton color="inherit"><HomeWorkIcon/></IconButton>
         <Typography variant="h5" style={{flexGrow:1}}> GOJO HOMES</Typography>
-
+           
+            { !this.props.login ?
+                <React.Fragment>
         <Button onClick={()=>this.handleSignUpClickOpen()} color="inherit">Sign UP</Button>
         <Button onClick={()=>this.handleSignInClickOpen()} color="inherit">LOG IN</Button>
+            </React.Fragment>
+            :""
+            }
+    
+
         <Button color="inherit">About Us</Button>
         <Button color="inherit">Contact Us</Button>
+        { this.props.login ?
         <IconButton color="inherit"><AccountCircleIcon/></IconButton>
-
-        <CustomDialog value={this.state.signupopen} onClose={this.handleSignUpClose}><SignUp/></CustomDialog>
-        <CustomDialog value={this.state.signinopen} onClose={this.handleSigninClose}><SignIn/></CustomDialog>
+        : ""
+        }
+        <CustomDialog value={this.state.signupopen} onClose={this.handleSignUpClose}><SignUp /></CustomDialog>
+        <CustomDialog value={this.state.signinopen} onClose={this.handleSigninClose}><SignIn onClose={this.handleSigninClose}/></CustomDialog>
     
         
     </Toolbar>
@@ -94,3 +103,12 @@ render(){
 
 
 }
+const mapStateToProps= (state) =>{
+
+    return{
+        login:state.login,
+        
+    } 
+}
+
+export default connect(mapStateToProps) (Navigation)
