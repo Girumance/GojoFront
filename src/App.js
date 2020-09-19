@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navigation from './Components/Navigation';
-import Index from './Components/HomePage/Index';
+import Index from './Components/Dashboard';
 import Footer from './Components/Footer';
 
 function App() {
