@@ -20,3 +20,12 @@ export const Adduserdata  = (data) =>{
             }
 
 }
+
+export const ADDFILE  = (data) =>{
+
+    return{
+        type: "Add_File",
+        File:data
+    }
+
+}

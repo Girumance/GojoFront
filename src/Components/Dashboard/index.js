@@ -1,10 +1,10 @@
 import React from 'react';
 import Holder from "./Holder"
-import Profile from "./Profile"
+import AddProperty from "./AddProperty/AddProperty"
 function index(props) {
     return (
         <div>
-            <Profile/>
+            <AddProperty/>
         </div>
       
     );
