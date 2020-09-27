@@ -12,14 +12,15 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImageCard() {
+export default function ImageCard(props) {
   const classes = useStyles();
-
+  const url=process.env.REACT_APP_BACKEND_URL+"image/downloadbyfilename/"+props.data.ownerId+"/"+props.data.fileName; 
+  
   return (
     <Card  className={classes.root}>
         <CardMedia
           className={classes.media}
-          image={require("./back.jpg")}
+          image={url}
           title="Images"
         />
        

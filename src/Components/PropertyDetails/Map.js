@@ -8,10 +8,10 @@ const useStyles = makeStyles({
         height:"100%"
     }
 })
-function Location(props) {
+function Map(props) {
     const [viewport, setViewport] = useState({
         width: "100%",
-        height: "104vh",
+        height: "50vh",
         latitude: 7.546037699999999,
         longitude: 40.6346851,
         zoom: 8
@@ -34,4 +34,4 @@ function Location(props) {
     );
 }
 
-export default Location;
+export default Map;

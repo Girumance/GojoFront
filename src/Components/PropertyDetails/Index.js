@@ -2,6 +2,7 @@ import React from 'react';
 import PicDIsplay from './PicDIsplay';
 import { Grid, makeStyles } from '@material-ui/core';
 import RequestDetails from './RequestDetails';
+import Description from './Description';
 
 const useStyles = makeStyles({
     root:{
@@ -26,6 +27,7 @@ function Index(props) {
 
                    <Grid item sm={9}>
                     <PicDIsplay/>
+                    <Description/>
                    </Grid>
 
                    <Grid item sm={3 }> 

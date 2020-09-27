@@ -1,17 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import ImageCard from './ImageCard';
 import "./Details.css"
+import Axios from 'axios';
+import { render } from '@testing-library/react';
 class PicDIsplay extends Component {
-    render() {
+    constructor(props){
+        super(props)
+
+        this.state={
+            images:[]
+        }
+        const imageUrl=process.env.REACT_APP_BACKEND_URL+"image/allimages/5f7005e86ab4f20e8463b1f8"
+
+        Axios.get(imageUrl).then( res => {
+      
+            this.setState({
+                images:res.data
+            })
+         })
+    }
+
+   
+          render(){
+        
+       const url=process.env.REACT_APP_BACKEND_URL+"image/downloadProfile/5f7005e86ab4f20e8463b1f8"
         return (
             <Grid container direction="column" spacing={3}>
                 
                 <Grid item sm={12}>
                 
                 <Paper elevation={3}>
+
+
                     
-                <img alt="Main pic" className="mainPic" src={require("./back.jpg")} />
+                <img alt="Main pic" className="mainPic" src={url} />
             
                 
 
@@ -21,28 +44,14 @@ class PicDIsplay extends Component {
 
                 <Grid item sm={12}>
                     <Grid container spacing={1}>
-                         <Grid item xs={12} sm={2}>
-                            <ImageCard/>
+                        
+                        {
+                        this.state.images.map( (res, index) =>
+                         <Grid index={index} item xs={12} sm={2}>
+                            <ImageCard data={res}/>
                          </Grid>
-
-                         <Grid item sm={2}>
-                            <ImageCard/>
-                         </Grid>
-
-                         <Grid item sm={2}>
-                            <ImageCard/>
-                         </Grid>
-
-                         <Grid item sm={2}>
-                            <ImageCard/>
-                         </Grid>
-                         <Grid item sm={2}>
-                            <ImageCard/>
-                         </Grid>
-
-                         <Grid item sm={2}>
-                            <ImageCard/>
-                         </Grid>
+                        )}
+                        
 
                     </Grid>
                 </Grid>
@@ -52,5 +61,6 @@ class PicDIsplay extends Component {
         );
     }
 }
+
 
 export default PicDIsplay;
