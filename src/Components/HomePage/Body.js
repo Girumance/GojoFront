@@ -133,7 +133,7 @@ export default class Body extends React.Component{
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => (
           <TextField
-          
+            id="search"
             color="secondary"
             {...params}
             label="Search Location..."

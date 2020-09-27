@@ -7,9 +7,78 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import AddImage from "./AddImage"
-import "../style.css"
+import {useSelector} from "react-redux"
 
-function Messages(props) {
+import "../style.css"
+import Axios from 'axios';
+
+function AddProperty(props) {
+
+    const userdata =useSelector( state => state.userdata)
+    const isLogin = useSelector( state => state.login)
+    const images = useSelector(state => state.images)
+
+   function onImageUpload(result,id,index){
+       let profile = index==0 ? true : false;
+    const urli=process.env.REACT_APP_BACKEND_URL+"image/upload/"+id+"/"+profile;
+    const formData=new FormData();
+    formData.append("photo",result.upload,result.upload.name)
+    Axios.post(urli,formData).then(resl=>{
+        console.log(resl)
+    })
+      }
+
+      const  ondAdd= ()=>{
+
+        const title=document.getElementById("title").value
+        const price=document.getElementById("price").value
+        const beds=document.getElementById("beds").value
+        const bath=document.getElementById("bath").value
+        const area=document.getElementById("area").value
+        const description=document.getElementById("desc").value
+        const city=document.getElementById("city").value
+
+        
+
+        if(isLogin){
+            const data={
+                "price": price,
+                "propertyType": null,
+                "propertyFor": null,
+                "location": null,
+                "city": city,
+                "area":area,
+                "region": null,
+                "description": description,
+                "ownerId": userdata.Id,
+                "titile": title,
+                "no_Of_BedRooms": beds,
+                "no_of_Bathrooms": bath,
+                "amenities": null
+            }
+
+            const url =process.env.REACT_APP_BACKEND_URL+"property/save"
+            Axios.post(url,data).then(res => {
+                console.log(res)
+                const id=res.data.id;
+                images.map((result, index) => {
+                    onImageUpload(result,id,index)
+                })
+            })
+        }
+        else{
+            console.log("Log in plzzzz")
+        }
+
+
+        
+        
+
+
+        }
+
+
+
     return (
 
         <div className="root">
@@ -159,7 +228,7 @@ function Messages(props) {
 </Grid>
 
 <Grid item sm={8}>
-<Button fullWidth variant="contained" color="primary"> Add</Button>
+<Button onClick={ondAdd} fullWidth variant="contained" color="secondary"> Add Property</Button>
 </Grid>
 
                 </Grid>
@@ -173,4 +242,4 @@ function Messages(props) {
     );
 }
 
-export default Messages;
+export default AddProperty;

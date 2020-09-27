@@ -1,12 +1,14 @@
-import React,{Component} from "react"
+import React from "react"
 import { Paper, Grid, InputAdornment } from "@material-ui/core";
 import {Autocomplete} from "@material-ui/lab"
-import {TextField} from "@material-ui/core"
+import {TextField,Button} from "@material-ui/core"
 import AddLocationOutlinedIcon from '@material-ui/icons/AddLocationOutlined';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {useDispatch} from "react-redux"
+import {AddSearch} from "./../../Actions"
 import "./Search.css"
 
 const top100Films = [
@@ -112,9 +114,19 @@ const top100Films = [
     { title: 'Monty Python and the Holy Grail', year: 1975 },
   ];
 
-class SearchPanel extends Component{
+function SearchPanel(){
 
-    render(){
+  const dispatch= useDispatch();
+
+ 
+
+   const   onSearch= () =>{
+
+          const search = document.getElementById("search").value;
+          
+          
+          dispatch(AddSearch(search));
+      }
 
         return(
             
@@ -149,7 +161,7 @@ label="For"
                         <Grid xs={12} item md={5}>
                         <Autocomplete
         freeSolo
-        id="free-solo-2-demo"
+        id="search"
         disableClearable
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => (
@@ -254,7 +266,10 @@ label="Property Type"
 </FormControl>
 
 </Grid>
-                        
+
+                     <Grid item xs={12} md={1}>
+                     <Button onClick={onSearch} size="large" color="secondary" variant='outlined'>Search</Button>
+                       </Grid>   
 
 
                     </Grid>
@@ -264,15 +279,13 @@ label="Property Type"
                     </Grid>
 
                     <Grid xs={12} item md={1}>
-
+                   
                     </Grid>
 
                 </Grid>
             </Paper>
             
         );
-
-    }
         
     
 }

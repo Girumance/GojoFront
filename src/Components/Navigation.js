@@ -87,8 +87,12 @@ render(){
 
         <Button color="inherit">About Us</Button>
         <Button color="inherit">Contact Us</Button>
-        { this.props.login ?
-        <IconButton color="inherit"><AccountCircleIcon/></IconButton>
+        { this.props.login ?<>
+            <Button color="inherit">{this.props.name}</Button>
+<IconButton color="inherit"><AccountCircleIcon/></IconButton>
+
+</>
+
         : ""
         }
         <CustomDialog value={this.state.signupopen} onClose={this.handleSignUpClose}><SignUp /></CustomDialog>
@@ -107,6 +111,7 @@ const mapStateToProps= (state) =>{
 
     return{
         login:state.login,
+        name:state.userdata.firstName
         
     } 
 }

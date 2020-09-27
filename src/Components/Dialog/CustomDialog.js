@@ -3,7 +3,7 @@ import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 
 import Paper from "@material-ui/core/Paper"
-import { useState } from 'react';
+
 
 class AlertDialog extends React.Component {
   constructor(){

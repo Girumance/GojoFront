@@ -29,3 +29,10 @@ export const ADDFILE  = (data) =>{
     }
 
 }
+
+export const AddSearch = (data) =>{
+        return {
+            type:"ADD_Search",
+            data:data
+        }
+}

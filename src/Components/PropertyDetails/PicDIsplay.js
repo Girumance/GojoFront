@@ -11,7 +11,7 @@ class PicDIsplay extends Component {
                 
                 <Paper elevation={3}>
                     
-                <img className="mainPic" src={require("./back.jpg")} />
+                <img alt="Main pic" className="mainPic" src={require("./back.jpg")} />
             
                 
 
