@@ -114,11 +114,11 @@ const top100Films = [
     { title: 'Monty Python and the Holy Grail', year: 1975 },
   ];
 
-function SearchPanel(){
+function SearchPanel(props){
 
   const dispatch= useDispatch();
 
- 
+  
 
    const   onSearch= () =>{
 

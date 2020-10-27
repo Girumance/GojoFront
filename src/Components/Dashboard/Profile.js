@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Typography, TextField, Avatar, makeStyles, Button } from '@material-ui/core';
 import Sidebar from './Sidebar';
 import "./style.css"
+import {useSelector} from "react-redux"
 
 const usestyles =makeStyles( theme => ({
 
@@ -13,8 +14,10 @@ const usestyles =makeStyles( theme => ({
 }))
 
 function profile(props) {
-
+   // const userdata = useSelector(state => state.userdata)
     const classes =usestyles()
+
+
     return (
 
         <div className="root">
@@ -80,6 +83,7 @@ function profile(props) {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                
               />
             </Grid>
             <Grid item sm={8}>

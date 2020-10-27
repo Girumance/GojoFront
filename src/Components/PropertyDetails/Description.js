@@ -5,7 +5,11 @@ import HotelIcon from '@material-ui/icons/Hotel';
 import BathtubIcon from '@material-ui/icons/Bathtub';
 import RoomIcon from '@material-ui/icons/Room';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import Map from "./Map"
+import {useSelector} from "react-redux"
+import { red } from '@material-ui/core/colors';
+import Axios from 'axios';
 
 const useStyles=makeStyles({
     root:{
@@ -23,6 +27,12 @@ const useStyles=makeStyles({
 
 function Description(props) {
 
+    const isloggedin = useSelector(state => state.login)
+    const userId     = useSelector(state => state.userdata)
+    const isLiked=false;
+
+    
+    
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -30,7 +40,7 @@ function Description(props) {
                 <Grid item sm={1}></Grid>
                 <Grid item sm={10}>
                     <Paper className={classes.paper}>
-                        <Typography variant="h4" color="textSecondary">Home</Typography>
+                        <Typography variant="h4" color="textSecondary">Home <FavoriteIcon color="secondary"/></Typography>
                         <Typography variant="h6" color="secondary">Br 2,500,000</Typography>
                         <Grid container>
                             <Grid item sm={6}>

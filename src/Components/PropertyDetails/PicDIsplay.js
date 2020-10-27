@@ -1,17 +1,16 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import ImageCard from './ImageCard';
 import "./Details.css"
 import Axios from 'axios';
-import { render } from '@testing-library/react';
 class PicDIsplay extends Component {
     constructor(props){
         super(props)
-
+            
         this.state={
             images:[]
         }
-        const imageUrl=process.env.REACT_APP_BACKEND_URL+"image/allimages/5f7005e86ab4f20e8463b1f8"
+        const imageUrl=process.env.REACT_APP_BACKEND_URL+"image/allimages/"+props.id
 
         Axios.get(imageUrl).then( res => {
       
@@ -24,7 +23,7 @@ class PicDIsplay extends Component {
    
           render(){
         
-       const url=process.env.REACT_APP_BACKEND_URL+"image/downloadProfile/5f7005e86ab4f20e8463b1f8"
+       const url=process.env.REACT_APP_BACKEND_URL+"image/downloadProfile/"+this.props.id
         return (
             <Grid container direction="column" spacing={3}>
                 

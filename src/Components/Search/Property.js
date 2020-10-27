@@ -12,7 +12,7 @@ import BathtubOutlinedIcon from '@material-ui/icons/BathtubOutlined';
 import { Badge, Grid } from '@material-ui/core';
 import CallOutlinedIcon from '@material-ui/icons/CallOutlined';
 import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
-
+import {useNavigate} from "react-router-dom"
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -24,10 +24,15 @@ const useStyles = makeStyles({
 
 export default function MediaCard(props) {
   const classes = useStyles();
+  const navigate = useNavigate();
+const click= () => {
+const path="/Detail/"+props.details.id
+navigate(path)
 
+}
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={click}>
         <CardMedia
           className={classes.media}
           image={require("./../HomePage/images/back.jpg")}

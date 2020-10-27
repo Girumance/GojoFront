@@ -10,7 +10,7 @@ function Sidebar(props) {
         <div>
 
                 <List>
-                    <ListItem selected={true} button>
+                    <ListItem to="/search/Bishoftu" selected={true} button>
                         <ListItemIcon >
                             <PersonIcon/>
                         </ListItemIcon>

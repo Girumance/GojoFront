@@ -6,11 +6,11 @@ import CustomDialog from "./Dialog/CustomDialog"
 import SignUp from "./SignUp"
 import SignIn from "./SignIn";
 import {connect} from "react-redux"
-
+import NavigationButton from "./Dashboard/NavigationButton"
  class Navigation extends React.Component{
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.handleSignUpClickOpen=this.handleSignUpClickOpen.bind(this)
         this.handleSignUpClose= this.handleSignUpClose.bind(this)
@@ -33,6 +33,8 @@ import {connect} from "react-redux"
 
             })
       };
+
+      
       
        handleSignUpClose = () => {
 
@@ -88,8 +90,10 @@ render(){
         <Button color="inherit">About Us</Button>
         <Button color="inherit">Contact Us</Button>
         { this.props.login ?<>
+            <NavigationButton />
             <Button color="inherit">{this.props.name}</Button>
 <IconButton color="inherit"><AccountCircleIcon/></IconButton>
+
 
 </>
 

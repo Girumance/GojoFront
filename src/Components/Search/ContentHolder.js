@@ -31,7 +31,16 @@ function ContentHolder(props) {
         
 
         const [data, setData]= useState([]);
+        const [dataloaded,setDataloaded] = useState(false);
 
+        if(dataloaded===false){
+            const url =process.env.REACT_APP_BACKEND_URL+"property/city/"+props.city
+            Axios.get(url).then( res => {
+                    setData(res.data)
+                    setDataloaded(true)
+                    console.log(props.city)
+            })
+        }
 
                 if(search!=="none"){
                 const url =process.env.REACT_APP_BACKEND_URL+"property/city/Addis"

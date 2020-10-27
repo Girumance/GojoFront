@@ -3,7 +3,7 @@ import PicDIsplay from './PicDIsplay';
 import { Grid, makeStyles } from '@material-ui/core';
 import RequestDetails from './RequestDetails';
 import Description from './Description';
-
+import {useParams} from "react-router-dom"
 const useStyles = makeStyles({
     root:{
         marginTop:"7vh;"
@@ -12,6 +12,7 @@ const useStyles = makeStyles({
 
 
 function Index(props) {
+const {id} = useParams()
 
     const classes=useStyles()
     return (
@@ -26,12 +27,12 @@ function Index(props) {
                <Grid container spacing={2}>
 
                    <Grid item sm={9}>
-                    <PicDIsplay/>
-                    <Description/>
+                    <PicDIsplay id={id}/>
+                    <Description id={id}/>
                    </Grid>
 
                    <Grid item sm={3 }> 
-                        <RequestDetails/>
+                        <RequestDetails id={id}/>
                    </Grid>
 
                </Grid>

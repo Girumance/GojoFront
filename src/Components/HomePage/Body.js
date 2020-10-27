@@ -4,6 +4,9 @@ import {TextField, Grid, Button, Paper,InputAdornment} from "@material-ui/core"
 import {Autocomplete} from "@material-ui/lab"
 import SearchIcon from '@material-ui/icons/Search';
 import AddLocationOutlinedIcon from '@material-ui/icons/AddLocationOutlined';
+import {useNavigate} from "react-router-dom"
+
+
 
 const top100Films = [
     { title: 'The Shawshank Redemption', year: 1994 },
@@ -107,10 +110,20 @@ const top100Films = [
     { title: '3 Idiots', year: 2009 },
     { title: 'Monty Python and the Holy Grail', year: 1975 },
   ];
-export default class Body extends React.Component{
+export default function  Body (){
+
+  const navigate =useNavigate()
 
 
-    render(){
+ const onSearch = ()=> {
+    const searchResulut =document.getElementById("search").value
+
+    const path="/search/"+searchResulut;
+  navigate(path)
+
+  }
+
+  
 
 
         return(
@@ -128,12 +141,12 @@ export default class Body extends React.Component{
                 <Grid xs={12}>
             <Autocomplete
         freeSolo
-        id="free-solo-2-demo"
+        id="search"
         disableClearable
         options={top100Films.map((option) => option.title)}
         renderInput={(params) => (
           <TextField
-            id="search"
+            
             color="secondary"
             {...params}
             label="Search Location..."
@@ -154,7 +167,7 @@ export default class Body extends React.Component{
       </Grid>
 
       <Grid xs={2}>
-      <Button startIcon={<SearchIcon/>} variant="contained" color="secondary" size="large">Search</Button>
+      <Button onClick={onSearch} startIcon={<SearchIcon/>} variant="contained" color="secondary" size="large">Search</Button>
       </Grid>
       </Paper>
             </Grid>
@@ -173,5 +186,5 @@ export default class Body extends React.Component{
 
 
         );
-    }
+    
 }

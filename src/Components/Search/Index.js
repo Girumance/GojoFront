@@ -1,19 +1,20 @@
 import React from "react"
 import SearchPanel from "./SearchPanel"
 import ContentHolder from "./ContentHolder"
+import {useParams} from "react-router-dom"
+function Index(){ 
+const {city} = useParams();
 
-class Index extends React.Component{
 
-    render(){
-
+        
         return(
-            <React.Fragment>
-                    <SearchPanel/>
-                    <ContentHolder/>
+            <React.Fragment >
+                    <SearchPanel />
+                    <ContentHolder city={city}/>
             </React.Fragment>
         );
 
-    }
+    
 }
 
 
