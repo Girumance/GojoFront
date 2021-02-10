@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, TextField,Button } from '@material-ui/core';
+import { Grid, Typography, TextField,Button,MenuItem,Select, InputLabel } from '@material-ui/core';
 import Sidebar from "../Sidebar";
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -17,6 +17,8 @@ function AddProperty(props) {
     const userdata =useSelector( state => state.userdata)
     const isLogin = useSelector( state => state.login)
     const images = useSelector(state => state.images)
+    const [radio,setRadio] = React.useState("Sell")
+    const [type, setType] = React.useState("All")
 
    function onImageUpload(result,id,index){
        let profile = index==0 ? true : false;
@@ -28,6 +30,20 @@ function AddProperty(props) {
     })
       }
 
+      const radioHandler = (event) =>{
+          setRadio(event.target.value);
+
+          
+      }
+
+      const typeHandler = (event) =>{
+        setType(event.target.value);
+        
+
+        
+    }
+
+
       const  ondAdd= ()=>{
 
         const title=document.getElementById("title").value
@@ -37,14 +53,14 @@ function AddProperty(props) {
         const area=document.getElementById("area").value
         const description=document.getElementById("desc").value
         const city=document.getElementById("city").value
+        
 
         
 
         if(isLogin){
             const data={
                 "price": price,
-                "propertyType": null,
-                "propertyFor": null,
+                "propertyType": type,
                 "location": null,
                 "city": city,
                 "area":area,
@@ -54,7 +70,8 @@ function AddProperty(props) {
                 "titile": title,
                 "no_Of_BedRooms": beds,
                 "no_of_Bathrooms": bath,
-                "amenities": null
+                "amenities": null,
+                "propertyFor":radio
             }
 
             const url =process.env.REACT_APP_BACKEND_URL+"property/save"
@@ -137,6 +154,24 @@ function AddProperty(props) {
                     </Grid>
 
                     <Grid item sm={8}>
+                    <FormControl variant="outlined" className="selectwidth">
+        <InputLabel id="demo-simple-select-outlined-label">Property Type</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          label="Property Type"
+          onChange={typeHandler}
+        >
+
+
+          <MenuItem value="Apartment">Apartment</MenuItem>
+          <MenuItem value="Villa">Villa</MenuItem>
+          <MenuItem value="Land">Land</MenuItem>
+        </Select>
+      </FormControl>
+                    </Grid>
+
+                    <Grid item sm={8}>
                     <TextField
             autoComplete="price"
             name="price"
@@ -215,7 +250,7 @@ function AddProperty(props) {
                     <Grid item sm={8}>
                     <FormControl component="fieldset">
       <FormLabel component="legend">For</FormLabel>
-      <RadioGroup aria-label="For" name="for"  >
+      <RadioGroup aria-label="For" name="for" onChange={radioHandler}  >
         <FormControlLabel value="Sell" control={<Radio />} label="Sell" />
         <FormControlLabel value="Rent" control={<Radio />} label="Rent" />
       </RadioGroup>

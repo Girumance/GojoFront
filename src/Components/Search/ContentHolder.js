@@ -34,10 +34,10 @@ function ContentHolder(props) {
         const [data, setData]= useState([]);
         const [dataloaded,setDataloaded] = useState(false);
 
-        const load = (city) => {
+        const load = (data) => {
 
-            const url =process.env.REACT_APP_BACKEND_URL+"property/city/"+city
-            Axios.get(url).then( res => {
+            const url =process.env.REACT_APP_BACKEND_URL+"property/filter"
+            Axios.post(url,data).then( res => {
                     setData(res.data)
                     setDataloaded(true)
                     console.log(search)

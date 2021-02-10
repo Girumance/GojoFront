@@ -39,8 +39,9 @@ function SearchPanel(props){
   const [minPrice, setminprice] = React.useState("0");
   const [maxPrice, setMaxPrice] = React.useState("100000000");
   const [beds,setBeds] = React.useState("0");
-  const [type, setType] = React.useState("Villa")
-  const [propFor, setPropFor] = React.useState("Rent")
+  const [type, setType] = React.useState("All")
+  const [propFor, setPropFor] = React.useState("All")
+  
 
   const handleMinprice = (event) => {
 
@@ -87,17 +88,18 @@ function SearchPanel(props){
             min:minPrice,
             max:maxPrice,
             beds:beds,
-            propFor:propFor,
+            propertyFor:propFor,
             type:type,
-            city:search
+            city:search,
+            propertyType:type
 
           }
 
-          console.log(data)
+          
           
           dispatch(AddSearch(search));
           const path="/search/"+search;
-          select(search);
+          select(data);
  // navigate(path)
       }
 
@@ -120,9 +122,10 @@ function SearchPanel(props){
 labelId="demo-simple-select-outlined-label"
 id="demo-simple-select-outlined"
 label="For"
+onChange={handleFor}
 >
-<MenuItem value="">
-<em>None</em>
+<MenuItem value="All">
+<em>All</em>
 </MenuItem>
 <MenuItem value="Rent">Rent</MenuItem>
 <MenuItem value="Sell">Buy</MenuItem>
@@ -190,12 +193,12 @@ label="For"
           label="Max Price"
           onChange={handleMaxprice}
         >
-          <MenuItem value={0}>
+          <MenuItem value={100000000}>
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>1000</MenuItem>
-          <MenuItem value={20}>10,000</MenuItem>
-          <MenuItem value={30}>100,000</MenuItem>
+          <MenuItem value={1000}>1000</MenuItem>
+          <MenuItem value={10000}>10,000</MenuItem>
+          <MenuItem value={10000000}>100,000</MenuItem>
         </Select>
       </FormControl>
 
@@ -211,12 +214,14 @@ label="For"
           label="Beds"
           onChange={handleBeds}
         >
-          <MenuItem value="">
-            <em>None</em>
+
+
+          <MenuItem value="0">
+            <em>All</em>
           </MenuItem>
-          <MenuItem value={10}>1</MenuItem>
-          <MenuItem value={20}>2</MenuItem>
-          <MenuItem value={30}>3</MenuItem>
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={8}>8</MenuItem>
         </Select>
       </FormControl>
 
@@ -232,12 +237,12 @@ id="demo-simple-select-outlined"
 label="Property Type"
 onChange={handleType}
 >
-<MenuItem value="">
-<em>None</em>
+<MenuItem value="All">
+<em>All</em>
 </MenuItem>
-<MenuItem value={10}>Apartment</MenuItem>
-<MenuItem value={20}>Villa</MenuItem>
-<MenuItem value={30}>Studio</MenuItem>
+<MenuItem value="Apartment">Apartment</MenuItem>
+<MenuItem value="Villa">Villa</MenuItem>
+<MenuItem value="Studio">Studio</MenuItem>
 </Select>
 </FormControl>
 
