@@ -68,14 +68,14 @@ export default function SignIn(props) {
     }
     const backurl=process.env.REACT_APP_BACKEND_URL+"login"
     Axios.post(backurl,data).then( res => {
-      
+      console.log(res.data)
       dispatch(Login())
       dispatch(Adduserdata(res.data))
       Close.onClose();
       
       
     }).then(res => {
-      console.log(res.data)
+      console.log(res)
     })
 
   }

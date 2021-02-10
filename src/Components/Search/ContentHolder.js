@@ -6,6 +6,7 @@ import {Pagination} from "@material-ui/lab"
 import { Typography } from '@material-ui/core';
 import Axios from "axios"
 import {AddSearch} from "./../../Actions"
+import {AddLoad} from "./../../Actions"
 import { useSelector, useDispatch} from "react-redux"
 const useStyles =makeStyles({
 
@@ -33,25 +34,44 @@ function ContentHolder(props) {
         const [data, setData]= useState([]);
         const [dataloaded,setDataloaded] = useState(false);
 
+        const load = (city) => {
+
+            const url =process.env.REACT_APP_BACKEND_URL+"property/city/"+city
+            Axios.get(url).then( res => {
+                    setData(res.data)
+                    setDataloaded(true)
+                    console.log(search)
+                    console.log(res.data)
+                   
+                    
+            })
+
+        }
+
+
         if(dataloaded===false){
             const url =process.env.REACT_APP_BACKEND_URL+"property/city/"+props.city
             Axios.get(url).then( res => {
                     setData(res.data)
                     setDataloaded(true)
-                    console.log(props.city)
+                    dispatch(AddLoad(load))
+                    console.log("hello from the world")
+                   
+                    
             })
         }
 
-                if(search!=="none"){
-                const url =process.env.REACT_APP_BACKEND_URL+"property/city/Addis"
+               /* if(search!=="none"){
+                const url =process.env.REACT_APP_BACKEND_URL+"property/city/Bishoftu"
                 Axios.get(url).then( res => {
                         setData(res.data)
                         dispatch(AddSearch("none"))
-                })}
+                })}*/
         
 
         
     const classes = useStyles();
+    
     
     
     return (

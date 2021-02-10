@@ -19,9 +19,9 @@ function App() {
       <Route  path="/" element={<HomePage/>}/>
       <Route exact path="/search/:city" element={<Index/>}/>
       <Route exact path="/Detail/:id" element={<Details/>}/>
-      <Route exact path="/Dashboard"  >
-              <Route exact path="/addproperty" element={<AddProperty/>}  />
-              <Route exact path="/Profile" element={<Profile/>}/>
+      <Route exact path="/Dashboard" element={<AddProperty/>} >
+              <Route exact path="/addproperty" element={<Profile/>} />
+              <Route exact path="/Profile" />
         </Route>
       </Routes>
     

@@ -25,17 +25,19 @@ const useStyles = makeStyles({
 export default function MediaCard(props) {
   const classes = useStyles();
   const navigate = useNavigate();
+  const url=process.env.REACT_APP_BACKEND_URL+"image/downloadProfile/"+props.details.id;
 const click= () => {
 const path="/Detail/"+props.details.id
 navigate(path)
-
 }
+
+
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={click}>
         <CardMedia
           className={classes.media}
-          image={require("./../HomePage/images/back.jpg")}
+          image={url}
           title="Contemplative Reptile"
         />
         <CardContent>

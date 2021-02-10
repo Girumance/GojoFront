@@ -36,3 +36,10 @@ export const AddSearch = (data) =>{
             data:data
         }
 }
+
+export const AddLoad = (data) =>{
+    return {
+        type:"ADD_LOAD",
+        data:data
+    }
+}
