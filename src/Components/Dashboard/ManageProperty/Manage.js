@@ -3,8 +3,12 @@ import { Grid } from '@material-ui/core';
 import Sidebar from '../Sidebar';
 //import "./style.css"
 import Index from './index';
+import {useSelector} from "react-redux"
+
 
 function Manage(props) {
+    const user = useSelector(state => state.userdata);
+
     return (
 
         <div className="root">
@@ -20,7 +24,7 @@ function Manage(props) {
 
 
             <Grid item sm={9}> 
-                <Index/>
+                <Index data={user}/>
             </Grid>
         </Grid>
         </Grid>

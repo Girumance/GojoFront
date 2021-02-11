@@ -22,10 +22,10 @@ function App() {
       <Route  path="/" element={<HomePage/>}/>
       <Route exact path="/search/:city" element={<Index/>}/>
       <Route exact path="/Detail/:id" element={<Details/>}/>
-      <Route exact path="/Dashboard" element={<AddProperty/>} />
+      <Route exact path="/Dashboard" element={<Profile/>} />
     
-        <Route exact path="/Profile" element={<Profile data={data}/>} />
-        <Route exact path="/ManageProperty" element={<ManageProperty/>} />
+        <Route exact path="/AddProperty" element={<AddProperty/>} data={data} />
+        <Route exact path="/ManageProperty" element={ <ManageProperty/>} />
       </Routes>
     
     <Footer/>

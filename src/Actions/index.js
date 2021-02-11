@@ -43,3 +43,10 @@ export const AddLoad = (data) =>{
         data:data
     }
 }
+
+export const SignIn = (data) =>{
+    return {
+        type:"ADD_SIGNIN",
+        data:data
+    }
+}

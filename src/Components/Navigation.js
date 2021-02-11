@@ -6,8 +6,11 @@ import CustomDialog from "./Dialog/CustomDialog"
 import SignUp from "./SignUp"
 import SignIn from "./SignIn";
 import {connect} from "react-redux"
+import {Login, Adduserdata} from "./../Actions"
+import Axios from "axios"
 import NavigationButton from "./Dashboard/NavigationButton"
- class Navigation extends React.Component{
+
+class Navigation extends React.Component{
 
     constructor(props){
         super(props);
@@ -16,6 +19,8 @@ import NavigationButton from "./Dashboard/NavigationButton"
         this.handleSignUpClose= this.handleSignUpClose.bind(this)
         this.handleSignInClickOpen=this.handleSignInClickOpen.bind(this)
         this.handleSigninClose=this.handleSigninClose.bind(this);
+
+        
         
 
         this.state={
@@ -69,7 +74,31 @@ import NavigationButton from "./Dashboard/NavigationButton"
 
 render(){
 
-    console.log(this.props.login)
+    if(localStorage.getItem("username")!="None"){
+
+        const data = {
+            username:localStorage.getItem("username"),
+            password:localStorage.getItem("password")
+        }
+        
+
+            const backurl=process.env.REACT_APP_BACKEND_URL+"login"
+            Axios.post(backurl,data).then( res => {
+              console.log("From sign in method")
+              this.props.dispatch(Login())
+              this.props.dispatch(Adduserdata(res.data))
+              localStorage.setItem("username",data.username)
+              localStorage.setItem("password",data.password)
+              
+              
+            }).then(res => {
+              console.log(res)
+            })
+        
+          
+    }
+
+   
 
     return(
 
@@ -115,9 +144,20 @@ const mapStateToProps= (state) =>{
 
     return{
         login:state.login,
-        name:state.userdata.firstName
+        name:state.userdata.firstName,
+        signin: state.signin
         
     } 
+}
+
+const mapDispatcherToProps = (dispatch) => {
+
+    return {
+        dispatch: (action) => {
+                dispatch(action)
+        } 
+    }
+
 }
 
 export default connect(mapStateToProps) (Navigation)

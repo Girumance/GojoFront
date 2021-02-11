@@ -5,14 +5,47 @@ import MessageIcon from '@material-ui/icons/Message';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import {useNavigate} from "react-router-dom"
+
+
+
 function Sidebar(props) {
 
+    const [flag, setFlag] = React.useState(1)
+    
+
+    const navigate = useNavigate();
+
+   
+const account = () => {
+    setFlag(1)
+    navigate("/dashboard")
+   
+    
+}
+
+
+const Property = ()=> {
+    setFlag(2)
+    navigate("/AddProperty")
+    
+    
+
+}
+
+const manage = ()=> {
+    setFlag(3)
+    navigate("/ManageProperty")
+    
+    
+
+}
     
     return (
         <div>
 
                 <List>
-                    <ListItem to="/search/Bishoftu" selected={true} button>
+                    <ListItem onClick={account} selected={ flag==1 ? true : false} button>
                         <ListItemIcon >
                             <PersonIcon/>
                         </ListItemIcon>
@@ -32,7 +65,7 @@ function Sidebar(props) {
                         </ListItemText>
                     </ListItem>
 
-                    <ListItem button>
+                    <ListItem onClick={Property} selected={ flag==2 ? true : false} button>
                         <ListItemIcon>
                             <AddBoxIcon/>
                         </ListItemIcon>
@@ -42,7 +75,7 @@ function Sidebar(props) {
                         </ListItemText>
                     </ListItem>
 
-                    <ListItem button>
+                    <ListItem onClick={manage} selected={ flag==3 ? true : false} button>
                         <ListItemIcon>
                             <HomeIcon/>
                         </ListItemIcon>

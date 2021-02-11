@@ -10,7 +10,7 @@ class PicDIsplay extends Component {
         this.state={
             images:[]
         }
-        const imageUrl=process.env.REACT_APP_IP+"image/allimages/"+props.id
+        const imageUrl=process.env.REACT_APP_BACKEND_URL+"image/allimages/"+props.id
 
         Axios.get(imageUrl).then( res => {
       
@@ -23,7 +23,7 @@ class PicDIsplay extends Component {
    
           render(){
         
-       const url=process.env.REACT_APP_IP+"image/downloadProfile/"+this.props.id
+       const url=process.env.REACT_APP_BACKEND_URL+"image/downloadProfile/"+this.props.id
         return (
             <Grid container direction="column" spacing={3}>
                 

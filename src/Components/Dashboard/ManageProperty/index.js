@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ProductList = () => {
+const ProductList = (props) => {
   const classes = useStyles();
   const [products,setProducts] = useState([]);
   const [customers,setCustomers] = useState([]);
@@ -34,7 +34,7 @@ const ProductList = () => {
   if(dataloaded==false){
 
     const url = process.env.REACT_APP_BACKEND_URL+"property/owner/"+user.Id;
-    console.log("URL:"+url)
+    console.log(props.user)
     Axios.get(url).then( res => {
       console.log(res.data)
       setProducts(res.data)

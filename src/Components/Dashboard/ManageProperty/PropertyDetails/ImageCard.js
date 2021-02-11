@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 
 export default function ImageCard(props) {
   const classes = useStyles();
-  const url=process.env.REACT_APP_IP+"image/downloadbyfilename/"+props.data.ownerId+"/"+props.data.fileName; 
+  const url=process.env.REACT_APP_BACKEND_URL+"image/downloadbyfilename/"+props.data.ownerId+"/"+props.data.fileName; 
   
   return (
     <Card  className={classes.root}>

@@ -13,11 +13,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useDispatch} from "react-redux"
-import {Login, Adduserdata} from "./../Actions"
+import {Login, Adduserdata,SignIn} from "./../Actions"
 import Axios from "axios"
 
 function Copyright() {
-
 
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -51,12 +50,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn(props) {
+export default function SignIN(props) {
   const classes = useStyles();
   const dispatch =useDispatch();
   const [Close] = useState(props)
-
-  const signin = () => {
+    
+  
+  const getInput = () => {
 
     const email = document.getElementById("email").value;
     const password=document.getElementById("password").value;
@@ -66,13 +66,22 @@ export default function SignIn(props) {
       username:email,
       password:password
     }
+
+    
+
+    signin(data);
+  }
+
+  const signin = (data) => {
+
     const backurl=process.env.REACT_APP_BACKEND_URL+"login"
     Axios.post(backurl,data).then( res => {
-      console.log(res.data)
+      console.log("From sign in method")
       dispatch(Login())
       dispatch(Adduserdata(res.data))
+      localStorage.setItem("username",data.username)
+      localStorage.setItem("password",data.password)
       Close.onClose();
-      
       
     }).then(res => {
       console.log(res)
@@ -80,6 +89,9 @@ export default function SignIn(props) {
 
   }
 
+  
+
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -123,7 +135,7 @@ export default function SignIn(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={signin}
+            onClick={getInput}
           >
             Sign In
           </Button>
