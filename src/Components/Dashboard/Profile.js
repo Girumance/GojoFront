@@ -16,6 +16,7 @@ const usestyles =makeStyles( theme => ({
 function profile(props) {
    // const userdata = useSelector(state => state.userdata)
     const classes =usestyles()
+    //const data = useSelector(state => state.userdata)
 
 
     return (
@@ -82,6 +83,7 @@ function profile(props) {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                defaultValue="Girum"
                 autoFocus
                 
               />

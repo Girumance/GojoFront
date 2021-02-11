@@ -9,9 +9,12 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import Dashboard from "./Components/Dashboard"
 import AddProperty from "./Components/Dashboard/AddProperty/AddProperty"
 import Profile from "./Components/Dashboard/Profile"
+import ManageProperty from "./Components/Dashboard/ManageProperty/Manage"
+import {useSelector} from "react-redux"
 
 function App() {
   console.log(process.env.REACT_APP_BACKEND_URL)
+  const data = useSelector(state => state.userdata)
   return (
     <Router>
    <Navigation/>
@@ -19,10 +22,10 @@ function App() {
       <Route  path="/" element={<HomePage/>}/>
       <Route exact path="/search/:city" element={<Index/>}/>
       <Route exact path="/Detail/:id" element={<Details/>}/>
-      <Route exact path="/Dashboard" element={<AddProperty/>} >
-              <Route exact path="/addproperty" element={<Profile/>} />
-              <Route exact path="/Profile" />
-        </Route>
+      <Route exact path="/Dashboard" element={<AddProperty/>} />
+    
+        <Route exact path="/Profile" element={<Profile data={data}/>} />
+        <Route exact path="/ManageProperty" element={<ManageProperty/>} />
       </Routes>
     
     <Footer/>
