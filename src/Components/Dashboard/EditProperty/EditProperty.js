@@ -9,6 +9,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import AddImage from "./AddImage"
 import {useSelector} from "react-redux"
 import {useParams} from "react-router-dom"
+import ImageController from "./ImageController"
 import "../style.css"
 import Axios from 'axios';
 
@@ -276,6 +277,15 @@ function EditProperty(props) {
     </FormControl>
 
     </Grid>
+
+
+    <Grid item sm={10}>
+        <ImageController id={id} />
+
+    </Grid>
+        
+
+
     <Grid item sm={10}>
 <AddImage/>
 
@@ -284,7 +294,7 @@ function EditProperty(props) {
 
 
 <Grid item sm={8}>
-<Button onClick={ondAdd} fullWidth variant="contained" color="secondary"> Add Property</Button>
+<Button onClick={ondAdd} fullWidth variant="contained" color="secondary"> Update Details</Button>
 
 </Grid>
 

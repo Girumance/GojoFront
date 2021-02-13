@@ -1,10 +1,10 @@
 import React from 'react';
-import {ADDFILE} from "../../../Actions"
+import {ADDEDITFILE} from "../../../Actions"
 import { useDispatch,useSelector} from "react-redux"
-import { ClickAwayListener, Typography, TextField ,Button, Grid} from '@material-ui/core';
-import ImageHolder from "./ImageHolder"
+import { ClickAwayListener, Typography, TextField ,Button, Grid,FilledInput} from '@material-ui/core';
+import ImageHolder from "./AddImageHolder"
 function AddImage(props) {
-    let img = useSelector( state => state.images)
+    let img = useSelector( state => state.editimage)
     let upload =null
     let image=null
 const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const dispatch = useDispatch();
             "image":image,
             "upload":upload
         }
-    dispatch(ADDFILE(file))
+    dispatch(ADDEDITFILE(file))
    
     }
 
@@ -33,7 +33,7 @@ const dispatch = useDispatch();
     return (
         <div>
             <Typography variant="body2">Add Image</Typography>
-            <TextField onChange={onFile}  id="image" variant="outlined" type="file"/>
+            <FilledInput onChange={onFile}  id="image" variant="outlined" type="file"/>
             <Button onClick={Click} color="primary" variant="outlined">Add Image</Button>
 
             <Grid container spacing={1}>

@@ -50,3 +50,14 @@ export const SignIn = (data) =>{
         data:data
     }
 }
+
+export const ADDEDITFILE  = (data) =>{
+
+    return{
+        type: "Add_EditFile",
+        File:data
+    }
+
+}
+
+

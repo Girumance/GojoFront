@@ -14,14 +14,14 @@ const useStyles = makeStyles({
   });
 function ImageHolder(props) {
     const classes = useStyles();
-    const url=process.env.REACT_APP_BACKEND_URL+"image/downloadbyfilename/"+props.img.ownerId+"/"+props.img.fileName;
+   
     return (
         <Grid item sm={2}>
             <Card className={classes.root}>
      
         <CardMedia
           className={classes.media}
-          image={url}
+          image={props.img.image}
           title="Contemplative Reptile"
         />
     </Card>
