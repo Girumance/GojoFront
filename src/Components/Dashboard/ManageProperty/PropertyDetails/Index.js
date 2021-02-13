@@ -3,6 +3,7 @@ import PicDIsplay from './PicDIsplay';
 import { Grid, makeStyles } from '@material-ui/core';
 import Description from './Description';
 import {useParams} from "react-router-dom"
+
 const useStyles = makeStyles({
     root:{
         marginTop:"7vh;"
@@ -27,7 +28,9 @@ const id = props.id;
 
                    <Grid item sm={12}>
                     <PicDIsplay id={id}/>
+                    
                     <Description id={id} onClose={props.onClose}/>
+                
                    </Grid>
 
                </Grid>

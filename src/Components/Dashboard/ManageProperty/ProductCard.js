@@ -68,7 +68,7 @@ const ProductCard = ({ className, product, ...rest }) => {
           align="center"
           color="textPrimary"
           gutterBottom
-          variant="h4"
+          variant="h6"
         >
           {product.titile}
         </Typography>

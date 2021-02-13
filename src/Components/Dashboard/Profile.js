@@ -13,10 +13,14 @@ const usestyles =makeStyles( theme => ({
 
 }))
 
+const selector = useSelector;
+
 function profile(props) {
-   // const userdata = useSelector(state => state.userdata)
+  
     const classes =usestyles()
-    //const data = useSelector(state => state.userdata)
+    const userdata = selector(state => state.userdata)
+
+    
 
 
     return (
@@ -83,7 +87,7 @@ function profile(props) {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                defaultValue="Girum"
+                defaultValue={userdata.firstName}
                 autoFocus
                 
               />
@@ -97,6 +101,7 @@ function profile(props) {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                defaultValue={userdata.lastName}
               />
             </Grid>
            
@@ -110,6 +115,7 @@ function profile(props) {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                defaultValue={userdata.email}
               />
               </Grid>
 
@@ -122,6 +128,7 @@ function profile(props) {
                 label="Phone Number"
                 name="phone"
                 autoComplete="phone"
+                defaultValue={userdata.phoneNumber}
               />
               </Grid>
 
@@ -134,6 +141,7 @@ function profile(props) {
                 label="City"
                 name="City"
                 autoComplete="City"
+                defaultValue={userdata.Cityb}
               />
               </Grid>
 

@@ -8,34 +8,36 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import AddImage from "./AddImage"
 import {useSelector} from "react-redux"
-import CustomDialog from "./../ManageProperty/Dialog/CustomDialog"
+import {useParams} from "react-router-dom"
 import "../style.css"
 import Axios from 'axios';
-import Paymnet from "./Paymnet"
 
 
-function AddProperty(props) {
+
+function EditProperty(props) {
 
     const userdata =useSelector( state => state.userdata)
     const isLogin = useSelector( state => state.login)
     const images = useSelector(state => state.images)
     const [radio,setRadio] = React.useState("Sell")
     const [type, setType] = React.useState("All")
-    const [open, setOpen] = useState(false)
-    const [id, setId] = React.useState("")
+    const [load, setLoad] = React.useState(false);
+    const {id} = useParams()
+    const [data,setData] = useState({});
+
+
+    const url =process.env.REACT_APP_BACKEND_URL+"property/getById/"+id
+    if(!load){
+    Axios.get(url).then( res => {
+        setData(res.data)
+        setLoad(true)
+        
+
+    })}
+   // const [id, setId] = React.useState("")
 
   
 
-
-  const openDialog = ()=>{
-
-    setOpen(true);
-
-  }
-
-  const closeDialog = ()=> {
-    setOpen(false);
-  }
 
    function onImageUpload(result,id,index){
        let profile = index==0 ? true : false;
@@ -47,17 +49,13 @@ function AddProperty(props) {
     })
       }
 
+      
       const radioHandler = (event) =>{
-          setRadio(event.target.value);
-
-          
+          setRadio(event.target.value);    
       }
 
       const typeHandler = (event) =>{
-        setType(event.target.value);
-        
-
-        
+        setType(event.target.value);            
     }
 
 
@@ -95,13 +93,12 @@ function AddProperty(props) {
             Axios.post(url,data).then(res => {
                 console.log(res)
                 const id=res.data.id;
-                setId(id);
                 images.map((result, index) => {
                     onImageUpload(result,id,index)
                 })
             })
 
-            openDialog();
+          
         }
         else{
             console.log("Log in plzzzz")
@@ -129,20 +126,21 @@ function AddProperty(props) {
 
                     <Grid item sm={10}>
 
-                        <Typography variant="h5" color="textSecondary" align="center">Add Details</Typography>
+                        <Typography variant="h5" color="textSecondary" align="center">Update Details</Typography>
                         <Typography variant="h6" color="textSecondary" align="center">Fill in all the necessary info that will make your property interesting and unique.</Typography>
 
                     </Grid>
 
                     <Grid item sm={8}>
                     <TextField
-            autoComplete="title"
+           autoComplete="title"
             name="title"
             variant="outlined"
             required
             fullWidth
             id="title"
-            
+            key={`${Math.floor((Math.random() * 1000))}-min`}
+            defaultValue={data.titile}
             type="text"
             label="Title"
             autoFocus
@@ -152,7 +150,7 @@ function AddProperty(props) {
 
                     <Grid item sm={8}>
                     <TextField
-            autoComplete="Description"
+            //autoComplete="Description"
             name="desc"
             variant="outlined"
             required
@@ -160,7 +158,8 @@ function AddProperty(props) {
             id="desc"
             rows={4}
             multiline
-            
+            defaultValue={data.description}
+            key={`${Math.floor((Math.random() * 1000))}-min`}
             type="text"
             label="Description"
             autoFocus
@@ -174,11 +173,13 @@ function AddProperty(props) {
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           label="Property Type"
+          defaultValue={data.propertyType}
+          key={`${Math.floor((Math.random() * 1000))}-min`}
           onChange={typeHandler}
         >
 
 
-          <MenuItem value="Apartment">Apartment</MenuItem>
+          <MenuItem  value="Apartment">Apartment</MenuItem>
           <MenuItem value="Villa">Villa</MenuItem>
           <MenuItem value="Land">Land</MenuItem>
         </Select>
@@ -193,12 +194,13 @@ function AddProperty(props) {
             required
             fullWidth
             id="price"
-            
+            key={`${Math.floor((Math.random() * 1000))}-min`}
+            defaultValue={data.price}
             type="text"
             label="Price in birr"
             autoFocus
             />
-                    </Grid>
+                </Grid>
 
                     <Grid item sm={8}>
                     <TextField
@@ -208,12 +210,12 @@ function AddProperty(props) {
             required
             fullWidth
             id="beds"
-    
+            value={data.no_Of_BedRooms}
             type="number"
             label="No of Beds"
             autoFocus
             />
-                    </Grid>
+             </Grid>
 
 
                     <Grid item sm={8}>
@@ -224,7 +226,8 @@ function AddProperty(props) {
             required
             fullWidth
             id="bath"
-            
+            key={`${Math.floor((Math.random() * 1000))}-min`}
+            defaultValue={data.no_of_Bathrooms}
             type="number"
             label="No of Bathrooms"
             autoFocus
@@ -239,7 +242,8 @@ function AddProperty(props) {
             required
             fullWidth
             id="area"
-            
+            key={`${Math.floor((Math.random() * 1000))}-min`}
+            defaultValue={data.area}
             type="number"
             label="Square feet"
             autoFocus
@@ -255,7 +259,8 @@ function AddProperty(props) {
             required
             fullWidth
             id="city"
-            
+            key={`${Math.floor((Math.random() * 1000))}-min`}
+            defaultValue={data.city}
             type="text"
             label="City"
             autoFocus
@@ -265,8 +270,8 @@ function AddProperty(props) {
                     <FormControl component="fieldset">
       <FormLabel component="legend">For</FormLabel>
       <RadioGroup aria-label="For" name="for" onChange={radioHandler}  >
-        <FormControlLabel value="Sell" control={<Radio />} label="Sell" />
-        <FormControlLabel value="Rent" control={<Radio />} label="Rent" />
+        <FormControlLabel checked = {(data.propertyFor == "Sell") ? true : false } value="Sell" control={<Radio />} label="Sell" />
+        <FormControlLabel checked = {(data.propertyFor == "Rent") ? true : false } value="Rent" control={<Radio />} label="Rent" />
       </RadioGroup>
     </FormControl>
 
@@ -280,7 +285,7 @@ function AddProperty(props) {
 
 <Grid item sm={8}>
 <Button onClick={ondAdd} fullWidth variant="contained" color="secondary"> Add Property</Button>
-<CustomDialog  value={open} onClose={closeDialog}> <Paymnet id={id}/> </CustomDialog>
+
 </Grid>
 
                 </Grid>
@@ -294,4 +299,4 @@ function AddProperty(props) {
     );
 }
 
-export default AddProperty;
+export default EditProperty;

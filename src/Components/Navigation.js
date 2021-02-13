@@ -9,6 +9,7 @@ import {connect} from "react-redux"
 import {Login, Adduserdata} from "./../Actions"
 import Axios from "axios"
 import NavigationButton from "./Dashboard/NavigationButton"
+import  {useNavigate} from "react-router-dom"
 
 class Navigation extends React.Component{
 
@@ -19,7 +20,7 @@ class Navigation extends React.Component{
         this.handleSignUpClose= this.handleSignUpClose.bind(this)
         this.handleSignInClickOpen=this.handleSignInClickOpen.bind(this)
         this.handleSigninClose=this.handleSigninClose.bind(this);
-
+        
         
         
 
@@ -28,6 +29,8 @@ class Navigation extends React.Component{
             signinopen:false
         }
     }
+
+    
 
      handleSignUpClickOpen = () => {
 
@@ -73,6 +76,10 @@ class Navigation extends React.Component{
 
 
 render(){
+    const navigate = useNavigate
+   const home=() =>{
+        navigate("/")
+    }
 
     if(localStorage.getItem("username")!="None"){
 
@@ -105,7 +112,7 @@ render(){
         <AppBar position="fixed">
         <Toolbar >
         <IconButton color="inherit"><HomeWorkIcon/></IconButton>
-        <Typography variant="h5" style={{flexGrow:1}}> GOJO HOMES</Typography>
+        <Typography onClick={home} variant="h5" style={{flexGrow:1}}> GOJO HOMES</Typography>
            
             { !this.props.login ?
                 <React.Fragment>

@@ -9,6 +9,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140,
+    minWidth:300
   },
 });
 

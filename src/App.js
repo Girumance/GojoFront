@@ -11,6 +11,7 @@ import AddProperty from "./Components/Dashboard/AddProperty/AddProperty"
 import Profile from "./Components/Dashboard/Profile"
 import ManageProperty from "./Components/Dashboard/ManageProperty/Manage"
 import {useSelector} from "react-redux"
+import EditProperty from "./Components/Dashboard/EditProperty/EditProperty"
 
 function App() {
   console.log(process.env.REACT_APP_BACKEND_URL)
@@ -23,9 +24,9 @@ function App() {
       <Route exact path="/search/:city" element={<Index/>}/>
       <Route exact path="/Detail/:id" element={<Details/>}/>
       <Route exact path="/Dashboard" element={<Profile/>} />
-    
-        <Route exact path="/AddProperty" element={<AddProperty/>} data={data} />
-        <Route exact path="/ManageProperty" element={ <ManageProperty/>} />
+      <Route exact path="/Edit/:id" element={<EditProperty/>} />
+      <Route exact path="/AddProperty" element={<AddProperty data={data}/>} />
+      <Route exact path="/ManageProperty" element={ <ManageProperty/>} />
       </Routes>
     
     <Footer/>
