@@ -81,11 +81,11 @@ function ContentHolder(props) {
 
             </Grid>
 
-            <Grid item md={11}>
+            <Grid item md={10}>
                
                     <Grid  container spacing={2}>
 
-                        <Grid item md={5} >
+                        <Grid item md={7} >
                             <h1>Contents</h1>
                             <Paper className={classes.contentPane}>
                             <Grid  container spacing={1}>
@@ -104,7 +104,7 @@ function ContentHolder(props) {
                             </Paper>
                         </Grid>
 
-                        <Grid item md={7} >
+                        <Grid item md={5} >
 
                                 <h1>Maps</h1>
                                  

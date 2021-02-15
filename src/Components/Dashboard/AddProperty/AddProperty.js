@@ -83,7 +83,7 @@ function AddProperty(props) {
                 "area":area,
                 "region": null,
                 "description": description,
-                "ownerId": userdata.Id,
+                "ownerId": userdata.id,
                 "titile": title,
                 "no_Of_BedRooms": beds,
                 "no_of_Bathrooms": bath,

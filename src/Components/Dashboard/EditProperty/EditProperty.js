@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> dev
 import React, {useState} from 'react';
 import { Grid, Typography, TextField,Button,MenuItem,Select, InputLabel } from '@material-ui/core';
 import Sidebar from "../Sidebar";
@@ -9,9 +13,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import AddImage from "./AddImage"
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
 import {useParams} from "react-router-dom"
 import ImageController from "./ImageController"
+import {ADDSNAKBARDATA} from "./../../../Actions/index"
 import "../style.css"
 import Axios from 'axios';
 
@@ -21,7 +26,8 @@ function EditProperty(props) {
 
     const userdata =useSelector( state => state.userdata)
     const isLogin = useSelector( state => state.login)
-    const images = useSelector(state => state.images)
+    const dispatch = useDispatch()
+    const images = useSelector(state => state.editimage)
     const [radio,setRadio] = React.useState("Sell")
     const [type, setType] = React.useState("All")
     const [load, setLoad] = React.useState(false);
@@ -78,7 +84,7 @@ function EditProperty(props) {
         if(isLogin){
             const data={
                 "price": price,
-                "propertyType": type,
+                //"propertyType": type,
                 "location": null,
                 "city": city,
                 "area":area,
@@ -92,15 +98,28 @@ function EditProperty(props) {
                 "propertyFor":radio
             }
             
-            const url =process.env.REACT_APP_BACKEND_URL+"property/save"
+            const url =process.env.REACT_APP_BACKEND_URL+"property/update/"+id
+            
             Axios.post(url,data).then(res => {
-                console.log(res)
-                const id=res.data.id;
+                
+                const idd=res.data.id;
+                    console.log(images)
+                    const dataa={
+                        message:"Property Has Updated!!",
+                        type:"success",
+                        open:true
+                    }
+                    dispatch(ADDSNAKBARDATA(dataa))
+                
                 images.map((result, index) => {
-                    onImageUpload(result,id,index)
+                    onImageUpload(result,idd,index)
                 })
-            })
 
+                
+
+                
+            })
+            
           
         }
         else{
@@ -180,8 +199,6 @@ function EditProperty(props) {
           key={`${Math.floor((Math.random() * 1000))}-min`}
           onChange={typeHandler}
         >
-
-
           <MenuItem  value="Apartment">Apartment</MenuItem>
           <MenuItem value="Villa">Villa</MenuItem>
           <MenuItem value="Land">Land</MenuItem>
@@ -203,6 +220,7 @@ function EditProperty(props) {
             label="Price in birr"
             autoFocus
             />
+
                 </Grid>
 
                     <Grid item sm={8}>
@@ -213,7 +231,8 @@ function EditProperty(props) {
             required
             fullWidth
             id="beds"
-            value={data.no_Of_BedRooms}
+            key={`${Math.floor((Math.random() * 1000))}-min`}
+            defaultValue={data.no_Of_BedRooms}
             type="number"
             label="No of Beds"
             autoFocus
@@ -268,6 +287,8 @@ function EditProperty(props) {
             label="City"
             autoFocus
             />
+
+
                     </Grid>
                     <Grid item sm={8}>
                     <FormControl component="fieldset">

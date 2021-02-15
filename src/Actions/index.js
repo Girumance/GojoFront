@@ -62,5 +62,14 @@ export const ADDEDITFILE  = (data) =>{
 
 }
 
+export const ADDSNAKBARDATA  = (data) =>{
+
+    return{
+        type: "ADD_SNAKDATA",
+        data:data
+    }
+
+}
+
 
 >>>>>>> dev

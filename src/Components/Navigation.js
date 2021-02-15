@@ -77,9 +77,7 @@ class Navigation extends React.Component{
 
 render(){
     const navigate = useNavigate
-   const home=() =>{
-        navigate("/")
-    }
+  
 
     if(localStorage.getItem("username")!="None"){
 
@@ -112,7 +110,7 @@ render(){
         <AppBar position="fixed">
         <Toolbar >
         <IconButton color="inherit"><HomeWorkIcon/></IconButton>
-        <Typography onClick={home} variant="h5" style={{flexGrow:1}}> GOJO HOMES</Typography>
+        <Typography  variant="h5" style={{flexGrow:1}}> GOJO HOMES</Typography>
            
             { !this.props.login ?
                 <React.Fragment>
@@ -135,11 +133,12 @@ render(){
 
         : ""
         }
-        <CustomDialog value={this.state.signupopen} onClose={this.handleSignUpClose}><SignUp /></CustomDialog>
+        <CustomDialog value={this.state.signupopen} onClose={this.handleSignUpClose}><SignUp onClose={this.handleSignUpClose} /></CustomDialog>
         <CustomDialog value={this.state.signinopen} onClose={this.handleSigninClose}><SignIn onClose={this.handleSigninClose}/></CustomDialog>
     
         
     </Toolbar>
+
     </AppBar>
     );
 }

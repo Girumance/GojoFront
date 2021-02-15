@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useDispatch} from "react-redux"
 import {Login, Adduserdata,SignIn} from "./../Actions"
+import {ADDSNAKBARDATA} from "./../Actions"
 import Axios from "axios"
 
 function Copyright() {
@@ -54,6 +55,7 @@ export default function SignIN(props) {
   const classes = useStyles();
   const dispatch =useDispatch();
   const [Close] = useState(props)
+ 
     
   
   const getInput = () => {
@@ -76,16 +78,73 @@ export default function SignIN(props) {
 
     const backurl=process.env.REACT_APP_BACKEND_URL+"login"
     Axios.post(backurl,data).then( res => {
-      console.log("From sign in method")
-      dispatch(Login())
-      dispatch(Adduserdata(res.data))
-      localStorage.setItem("username",data.username)
-      localStorage.setItem("password",data.password)
-      Close.onClose();
+
       
-    }).then(res => {
-      console.log(res)
+
+      if(res.data.type=="USER"){
+
+        let message="";
+        let type="";
+            message="Wellcome back "+res.data.firstName+"!"
+            type="success"
+            dispatch(Login())
+            dispatch(Adduserdata(res.data))
+            localStorage.setItem("username",data.username)
+            localStorage.setItem("password",data.password)
+            Close.onClose();
+            const dataa={
+              message,
+              type,
+              open:true
+          }
+        
+            dispatch(ADDSNAKBARDATA(dataa))
+        
+               
+    }
+
+    else{
+      let message="";
+      let type="";
+
+      message="Username And Password Doesn't Match!!"
+      type="error"
+
+            const dataa={
+              message,
+              type,
+              open:true
+          }
+        
+            dispatch(ADDSNAKBARDATA(dataa))
+        
+
+            
+
+    }
+
+    
+    
+
+    
+     
+      
+    }).catch(res => {
+      let message="";
+      let type="";
+      message="Username And Password Doesn't Match!!"
+      type="error"
+
+            const dataa={
+              message,
+              type,
+              open:true
+          }
+        
+            dispatch(ADDSNAKBARDATA(dataa))
     })
+
+    
 
   }
 
