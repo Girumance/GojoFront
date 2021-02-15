@@ -178,8 +178,12 @@ color="secondary"
             <em>None</em>
           </MenuItem>
           <MenuItem value="1000"> 1000 </MenuItem>
-          <MenuItem value="10000"> 10,000 </MenuItem>
-          <MenuItem value="100000"> 100,000 </MenuItem>
+          <MenuItem value="20000"> 20,000 </MenuItem>
+          <MenuItem value="30000"> 40,000 </MenuItem>
+          <MenuItem value={60000}>60,000</MenuItem>
+          <MenuItem value={70000}>70,000</MenuItem>
+          <MenuItem value={80000}>80,000</MenuItem>
+          <MenuItem value={90000}>90,000</MenuItem>
         </Select>
       </FormControl>
 
@@ -199,9 +203,12 @@ color="secondary"
           <MenuItem value={100000000}>
             <em>None</em>
           </MenuItem>
-          <MenuItem value={1000}>1000</MenuItem>
-          <MenuItem value={10000}>10,000</MenuItem>
-          <MenuItem value={10000000}>100,000</MenuItem>
+          <MenuItem value={100000}>100,000</MenuItem>
+          <MenuItem value={200000}>200,000</MenuItem>
+          <MenuItem value={300000}>300,000</MenuItem>
+          <MenuItem value={400000}>400,000</MenuItem>
+          <MenuItem value={1000000}>1,000,000</MenuItem>
+          <MenuItem value={100000000}>100,000,000</MenuItem>
         </Select>
       </FormControl>
 
@@ -225,6 +232,11 @@ color="secondary"
           </MenuItem>
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+          <MenuItem value={6}>6</MenuItem>
+          <MenuItem value={7}>7</MenuItem>
           <MenuItem value={8}>8</MenuItem>
         </Select>
       </FormControl>

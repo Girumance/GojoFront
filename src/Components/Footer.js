@@ -1,12 +1,13 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core"
+import {makeStyles, Typography} from "@material-ui/core"
 import SnakBar from "./SnakBar"
 
 const useStyles =makeStyles({
     root:{
         height:"40vh",
         marginTop:"5vh",
-        backgroundColor:"blue"
+        backgroundColor:"#3f51b5",
+        padding:"px"
     }
 })
 
@@ -16,7 +17,8 @@ function Footer() {
     return (
         <div className={classes.root}>
             <SnakBar/>
-            
+
+   
         </div>
     );
 }

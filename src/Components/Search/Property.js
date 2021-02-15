@@ -47,7 +47,9 @@ navigate(path)
           </Typography>
 
           <Typography gutterBottom variant="h6" color="textSecondary" component="h3">
-          Note that the development build
+          {
+            [props.details.description]
+          }
           </Typography>
 
             <Grid container>

@@ -90,7 +90,7 @@ function EditProperty(props) {
                 "area":area,
                 "region": null,
                 "description": description,
-                "ownerId": userdata.Id,
+            
                 "titile": title,
                 "no_Of_BedRooms": beds,
                 "no_of_Bathrooms": bath,
@@ -103,7 +103,7 @@ function EditProperty(props) {
             Axios.post(url,data).then(res => {
                 
                 const idd=res.data.id;
-                    console.log(images)
+                    console.log(res.data)
                     const dataa={
                         message:"Property Has Updated!!",
                         type:"success",
