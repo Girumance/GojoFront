@@ -1,5 +1,7 @@
 import { Button, Grid, Paper, TextField, makeStyles } from '@material-ui/core';
 import Axios from 'axios';
+import {useDispatch} from "react-redux"
+import {ADDSNAKBARDATA} from "./../../../Actions"
 
 import React from 'react';
 const useStyles = makeStyles((theme) => ({
@@ -9,13 +11,14 @@ const useStyles = makeStyles((theme) => ({
     
   }));
 const Paymnet = (props) => {
-
+    const dispatch = useDispatch()
     
         
 const onPay = () => {
 
     const phoneNumber = document.getElementById("phoneNumber").value;
     const password= document.getElementById("password").value;
+    
 
     const data ={
         phoneNumber,
@@ -27,7 +30,31 @@ const onPay = () => {
     const url = process.env.REACT_APP_BACKEND_URL+"bank/pay"
     Axios.post(url, data ).then( res => 
         {
-            console.log(res.data)
+                let message="";
+                let type=""
+
+                switch(res.data){
+
+                    case 1:
+                        message="You have payed 400 birr succesfully!"
+                        type="success"
+                        break;
+                    case -1:
+                        message="You have insufficient money!"
+                        type="error" 
+                        break;
+                        
+                     case 0:
+                         message="Check your phone number and password!"
+                         type="error"   
+                }
+
+                const dataa={
+                    message,
+                    type,
+                    open:true
+                }
+                dispatch(ADDSNAKBARDATA(dataa))
         }
         
         )

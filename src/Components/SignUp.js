@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
+import {ADDSNAKBARDATA} from "./../Actions"
+import {useDispatch} from "react-redux" 
+
 
 function Copyright() {
 
@@ -50,8 +53,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
+  const dispatch = useDispatch()
+  const [Close] = useState(props)
+
 
   const onSubmit = ()=>{
     const fname=document.getElementById("firstName").value
@@ -60,8 +66,8 @@ export default function SignUp() {
     const phone=document.getElementById("phone").value
     const password=document.getElementById("password").value
     const cpassword=document.getElementById("confirmpassword").value
-    
-    if(password===cpassword){
+    if( password.length > 0){
+    if(password===cpassword ){
         
       let data={
         "firstName":fname,
@@ -78,12 +84,60 @@ export default function SignUp() {
 
        
        Axios.post(backurl,data).then( res =>{
-          console.log(res.data)
+        let message="";
+        let type="";
+  
+        message="User Has Registered!"
+        type="success"
+  
+              const dataa={
+                message,
+                type,
+                open:true
+            }
+          
+            dispatch(ADDSNAKBARDATA(dataa))
+            Close.onClose();
        })
 
     }
+    else{
+      let message="";
+      let type="";
+
+      message="Password and Confirm Pawssword Must Match!!"
+      type="error"
+
+            const dataa={
+              message,
+              type,
+              open:true
+          }
+        
+          dispatch(ADDSNAKBARDATA(dataa))
+
+    }
+
+  }else{
+
+    let message="";
+      let type="";
+
+      message="Password And Confirm Password Should Not Be Empty!"
+      type="error"
+
+            const dataa={
+              message,
+              type,
+              open:true
+          }
+        
+          dispatch(ADDSNAKBARDATA(dataa))
 
   }
+
+
+}
 
 
 

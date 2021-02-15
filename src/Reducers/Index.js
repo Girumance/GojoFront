@@ -6,6 +6,7 @@ import Search from "./Search"
 import Load from "./load"
 import SignIn from "./signIn"
 import EditImage from "./EditImage"
+import SnakBarState from "./SnakBarState"
 const reducers = combineReducers({
 login:Login,
 userdata:Userdata,
@@ -13,7 +14,8 @@ images:Images,
 search:Search,
 load:Load,
 signin:SignIn,
-editimage:EditImage
+editimage:EditImage,
+snackbarState:SnakBarState
 }
 )
 

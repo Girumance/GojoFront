@@ -33,12 +33,12 @@ const ProductList = (props) => {
 
   if(dataloaded==false){
 
-    const url = process.env.REACT_APP_BACKEND_URL+"property/owner/"+user.Id;
-    console.log(props.user)
+    const url = process.env.REACT_APP_BACKEND_URL+"property/owner/"+user.id;
     Axios.get(url).then( res => {
       console.log(res.data)
+      console.log("test")
       setProducts(res.data)
-    })
+    }).catch( res => console.log(res.data))
 
     setDataLoaded(true)
 

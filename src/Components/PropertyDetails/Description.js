@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Paper,Typography, makeStyles, List,ListItem, ListItemIcon, ListItemText, Button } from '@material-ui/core';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import HotelIcon from '@material-ui/icons/Hotel';
@@ -10,6 +10,8 @@ import Map from "./Map"
 import {useSelector} from "react-redux"
 import { red } from '@material-ui/core/colors';
 import Axios from 'axios';
+import UserDetails from './UserDetails';
+
 
 const useStyles=makeStyles({
     root:{
@@ -29,8 +31,29 @@ function Description(props) {
 
     const isloggedin = useSelector(state => state.login)
     const userId     = useSelector(state => state.userdata)
-    const isLiked=false;
+    const [data,setData] = useState("");
+    const [load,setLoad] = useState(false);
+    const [userData, setUserData] = useState([]);
+     
+    const url = process.env.REACT_APP_BACKEND_URL+"property/getById/"+props.id
 
+    if(!load)
+    Axios.get(url).then( res => { 
+        setData(res.data)
+        console.log(res.data)
+        const url1 = process.env.REACT_APP_BACKEND_URL+"profile/get/"+res.data.ownerId
+        Axios.get(url1).then( res => {
+            console.log(res.data)
+                setUserData(res.data)
+            
+        })
+
+        
+        setLoad(true)
+        
+    })
+
+   
     
     
     const classes = useStyles();
@@ -40,29 +63,30 @@ function Description(props) {
                 <Grid item sm={1}></Grid>
                 <Grid item sm={10}>
                     <Paper className={classes.paper}>
-                        <Typography variant="h4" color="textSecondary">Home <FavoriteIcon color="secondary"/></Typography>
-                        <Typography variant="h6" color="secondary">Br 2,500,000</Typography>
+                        <Typography variant="h4" color="textSecondary">{data.titile} <FavoriteIcon color="secondary"/></Typography>
+                        <Typography variant="h6" color="secondary">Br {data.price}</Typography>
+                      
                         <Grid container>
                             <Grid item sm={6}>
                        <List>
                             <ListItem>
                                 <ListItemIcon><FullscreenIcon/></ListItemIcon>
-                                <ListItemText>2500square meter</ListItemText>
+                                <ListItemText>{data.area} square meter</ListItemText>
                             </ListItem>
 
                             <ListItem>
                                 <ListItemIcon><HotelIcon/></ListItemIcon>
-                                <ListItemText>3</ListItemText>
+                                <ListItemText>{data.no_Of_BedRooms}</ListItemText>
                             </ListItem>
 
                             <ListItem>
                                 <ListItemIcon><BathtubIcon/></ListItemIcon>
-                                <ListItemText>2</ListItemText>
+                                <ListItemText>{data.no_of_Bathrooms}</ListItemText>
                             </ListItem>
 
                             <ListItem>
                                 <ListItemIcon><RoomIcon/></ListItemIcon>
-                                <ListItemText>Bishoftu</ListItemText>
+                                <ListItemText>{data.city}</ListItemText>
                             </ListItem>
 
                        </List>
@@ -70,12 +94,12 @@ function Description(props) {
                        </Grid>
 
                        <Grid item sm={6}>
-                            <Button variant="contained" color="secondary" disabled>For sale</Button>
+                            <Button variant="contained" color="secondary" disabled>For {data.propertyFor}</Button>
 
                             <List>
                                 <ListItem>
                                     <ListItemIcon><ScheduleIcon/></ListItemIcon>
-                                    <ListItemText>2020-05-01</ListItemText>
+                                    <ListItemText>{data.date}</ListItemText>
                                 </ListItem>
                             </List>
                        </Grid>
@@ -83,18 +107,23 @@ function Description(props) {
                        <Grid item sm={12}>
                            <Typography variant="h5" >Description</Typography>
 
-                           <Typography variant="body1" color="textSecondary">WE VALUE YOUR SAFETY ABOVE EVERYTHING. NEVER PAY MONEY BEFORE VIEWING A PROPERTY, PLEASE REPORT ANY USER REQUESTING UPFRONT PAYMENT USING THE REPORT ABUSE BUTTON ON THIS PAGE. FOR MORE TOP TIPS ON KEEPING SAFE, SEE OUR SAFETY PAGES.</Typography>
-
+                           <Typography  variant="body1" color="textSecondary">{data.description}</Typography>
+                           
                        </Grid>
                        </Grid>
 
                     </Paper>
 
+                    
 
                 </Grid>
                 <Grid item sm={1}></Grid>
-
+                
             </Grid>
+
+               
+            <UserDetails data={userData}/>
+        
            
                 <Paper elevation={1} className={classes.map}>
                 <Map/>

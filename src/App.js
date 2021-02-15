@@ -12,11 +12,14 @@ import Profile from "./Components/Dashboard/Profile"
 import ManageProperty from "./Components/Dashboard/ManageProperty/Manage"
 import {useSelector} from "react-redux"
 import EditProperty from "./Components/Dashboard/EditProperty/EditProperty"
-
+import { ThemeProvider } from '@material-ui/core';
+import theme from "./theme"
 function App() {
   console.log(process.env.REACT_APP_BACKEND_URL)
   const data = useSelector(state => state.userdata)
   return (
+
+    <ThemeProvider theme={theme}>
     <Router>
    <Navigation/>
    <Routes>
@@ -31,6 +34,8 @@ function App() {
     
     <Footer/>
     </Router>
+
+    </ThemeProvider>
   
   );
 }

@@ -147,11 +147,10 @@ function profile(props) {
 
                 <Grid item sm={8}>
 
-                    <Button size="large" color="primary" fullWidth  variant="outlined">Save</Button>
+                    <Button size="large" color="secondary" fullWidth  variant="contained">Update</Button>
 
                 </Grid>
-            
-
+          
 
                     </Grid>
 
