@@ -38,7 +38,7 @@ const onEdit = () => {
             <Grid container alignItems="right" alignContent="right">
                    
                     <Grid alignItems="center" alignContent="center" item sm={4}>
-                        <Button onClick={onEdit}  color="primary" variant="outlined">Edit</Button>
+                        <Button onClick={onEdit}  color="secondary" variant="outlined">Edit</Button>
                     </Grid>
 
                     <Grid item sm={4}>

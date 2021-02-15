@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, TextField, makeStyles } from '@material-ui/core';
+import { Button, Grid, Paper, TextField, makeStyles, Typography } from '@material-ui/core';
 import Axios from 'axios';
 import {useDispatch} from "react-redux"
 import {ADDSNAKBARDATA} from "./../../../Actions"
@@ -67,7 +67,10 @@ const onPay = () => {
 
         <div className={css.root} >
         <Grid container direction="column" spacing={3}>
-
+            <Grid item sm={12}>
+                <Typography variant="h2" align="center" color="secondary">Payment Terms And Conditions:</Typography>
+                <Typography variant="h5" align="center" color="secondary">when you post your property 400.00 ETB(ETHIOPIAN BIRR) will be debited from your account!</Typography>
+            </Grid>
             <Grid item sm={12}>
             <TextField
             autoComplete="PhoneNumber"
@@ -101,7 +104,7 @@ const onPay = () => {
             </Grid>
 
             <Grid item sm={12}>
-                <Button onClick={onPay} variant="contained" fullWidth >Pay</Button>
+                <Button onClick={onPay} color="secondary" variant="outlined" fullWidth >Pay</Button>
             </Grid>
 
         </Grid>

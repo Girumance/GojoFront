@@ -12,6 +12,8 @@ import CustomDialog from "./../ManageProperty/Dialog/CustomDialog"
 import "../style.css"
 import Axios from 'axios';
 import Paymnet from "./Paymnet"
+import {ADDSNAKBARDATA} from "./../../../Actions"
+import {useDispatch} from "react-redux"
 
 
 function AddProperty(props) {
@@ -23,6 +25,7 @@ function AddProperty(props) {
     const [type, setType] = React.useState("All")
     const [open, setOpen] = useState(false)
     const [id, setId] = React.useState("")
+    const dispatch = useDispatch();
 
   
 
@@ -93,12 +96,20 @@ function AddProperty(props) {
             
             const url =process.env.REACT_APP_BACKEND_URL+"property/save"
             Axios.post(url,data).then(res => {
-                console.log(res)
+            
                 const id=res.data.id;
                 setId(id);
                 images.map((result, index) => {
                     onImageUpload(result,id,index)
                 })
+                let message="Property Has Registered!!Proceed With The Payment!!";
+                let type="success"
+                const dataa={
+                  message,
+                  type,
+                  open:true
+              }
+              dispatch(ADDSNAKBARDATA(dataa))
             })
 
             openDialog();

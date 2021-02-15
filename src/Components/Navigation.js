@@ -10,6 +10,7 @@ import {Login, Adduserdata} from "./../Actions"
 import Axios from "axios"
 import NavigationButton from "./Dashboard/NavigationButton"
 import  {useNavigate} from "react-router-dom"
+import Singout from "./Singout"
 
 class Navigation extends React.Component{
 
@@ -29,6 +30,8 @@ class Navigation extends React.Component{
             signinopen:false
         }
     }
+
+
 
     
 
@@ -127,7 +130,7 @@ render(){
             <NavigationButton />
             <Button color="inherit">{this.props.name}</Button>
 <IconButton color="inherit"><AccountCircleIcon/></IconButton>
-
+<Singout />
 
 </>
 
