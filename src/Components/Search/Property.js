@@ -15,10 +15,10 @@ import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import {useNavigate} from "react-router-dom"
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 400,
   },
   media: {
-    height: 140,
+    height: 180,
   },
 });
 
@@ -30,6 +30,7 @@ const click= () => {
 const path="/Detail/"+props.details.id
 navigate(path)
 }
+
 
 
   return (
@@ -58,8 +59,8 @@ navigate(path)
 
                 <Grid item md={6}>
                 <Typography variant="h4" color="textSecondary" component="p" align="right">
-           <Badge className="badge" badgeContent={2} color="primary"> <HotelOutlinedIcon/> </Badge>
-           <Badge badgeContent={2} color="primary"> <BathtubOutlinedIcon/> </Badge>
+           <Badge className="badge" badgeContent={props.details.no_Of_BedRooms} color="secondary"> <HotelOutlinedIcon/> </Badge>
+           <Badge badgeContent={props.details.no_of_Bathrooms} color="secondary"> <BathtubOutlinedIcon/> </Badge>
           </Typography>
                 </Grid>
 
@@ -70,7 +71,7 @@ navigate(path)
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button variant="outlined" size="small" color="primary" startIcon={<CallOutlinedIcon/>}>
+        <Button variant="outlined" size="small" color="secondary" startIcon={<CallOutlinedIcon/>}>
           Call
         </Button>
         <Button variant="outlined" size="small" color="secondary" startIcon={<EmailOutlinedIcon/>}>

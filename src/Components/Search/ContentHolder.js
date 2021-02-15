@@ -88,7 +88,7 @@ function ContentHolder(props) {
                         <Grid item md={7} >
                             <h1>Contents</h1>
                             <Paper className={classes.contentPane}>
-                            <Grid  container spacing={1}>
+                            <Grid  container spacing={2}>
                                {
                                data.map( (res,index) => <Grid key={index} item md={6}>
                                         <Property details={res}/>
@@ -98,7 +98,7 @@ function ContentHolder(props) {
                             </Grid>
 
                            <Typography align="center">
-                            <Pagination  className={classes.page} count={10} variant="outlined" color="primary" />
+                            
                             </Typography>
                            
                             </Paper>
