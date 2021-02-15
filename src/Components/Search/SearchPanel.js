@@ -121,8 +121,9 @@ function SearchPanel(props){
 <Select
 labelId="demo-simple-select-outlined-label"
 id="demo-simple-select-outlined"
-label="For"
+label="To"
 onChange={handleFor}
+color="secondary"
 >
 <MenuItem value="All">
 <em>All</em>
@@ -167,6 +168,7 @@ onChange={handleFor}
                         <FormControl variant="outlined" className="selectwidth">
         <InputLabel id="demo-simple-select-outlined-label">Min Price</InputLabel>
         <Select
+        color="secondary"
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           label="Min Price"
@@ -188,6 +190,7 @@ onChange={handleFor}
                         <FormControl variant="outlined" className="selectwidth">
         <InputLabel id="demo-simple-select-outlined-label">Max Price</InputLabel>
         <Select
+        color="secondary"
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           label="Max Price"
@@ -209,6 +212,7 @@ onChange={handleFor}
                         <FormControl variant="outlined" className="selectwidth">
         <InputLabel id="demo-simple-select-outlined-label">Beds</InputLabel>
         <Select
+        color="secondary"
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           label="Beds"
@@ -232,6 +236,7 @@ onChange={handleFor}
 <FormControl variant="outlined" className="selectwidth">
 <InputLabel id="demo-simple-select-outlined-label">Property Type</InputLabel>
 <Select
+color="secondary"
 labelId="demo-simple-select-outlined-label"
 id="demo-simple-select-outlined"
 label="Property Type"

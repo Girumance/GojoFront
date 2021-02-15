@@ -47,7 +47,7 @@ function RequestDetails(props) {
                 </Grid>
 
                 <Grid item sm={12}>
-                   <Button startIcon={<PhoneIcon/>}  variant="contained" color="primary" fullWidth={true}>+251921064879</Button>
+                   <Button startIcon={<PhoneIcon/>}  variant="outline" color="secondary" fullWidth={true}>GoJO Homes</Button>
                     </Grid>
 
             <Grid item sm={12}>
@@ -84,7 +84,7 @@ function RequestDetails(props) {
                     
 
                     <Grid item sm={12}>
-                   <Button startIcon={<SendIcon/>} onClick={onSend} variant="outlined" color="primary" fullWidth={true}>Send Message</Button>
+                   <Button startIcon={<SendIcon/>} onClick={onSend} variant="outlined" color="secondary" fullWidth={true}>Send Message</Button>
                     </Grid>
 
                     
